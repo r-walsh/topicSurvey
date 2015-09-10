@@ -1,0 +1,32 @@
+<nav class="btn-group admin-nav" dropdown is-open="status.isopen">
+	<button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+	Navigation<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+		<li role="menuitem"><a href="#/admin">Dashboard</a></li>
+		<li role="menuitem"><a href="#/admin/send-survey">Send Survey</a></li>
+		<li role="menuitem"><a href="#/admin/view-results">View Results</a></li>
+		<li role="menuitem"><a href="#/admin/create-template">Create Template</a></li>
+	</ul>
+</nav>
+
+<div class="wrapper">
+	<form name="createGroup">
+		
+		<div class="form-group">
+			<label for="group-name">Group Name</label>
+			<input type="text" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label for="user-name">User Name</label>
+			<input type="text" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label for="user-email">User Email</label>
+			<input type="text" class="form-control">
+		</div>
+
+	</form>
+</div>

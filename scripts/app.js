@@ -18,4 +18,16 @@ app.config(function($routeProvider) {
 		templateUrl: '../templates/createSurveyTmpl.html',
 		controller: 'adminCtrl'
 	})
+	.when('/admin/create-group', {
+		templateUrl: '../templates/createGroupTmpl.html',
+		controller: 'adminCtrl'
+	})
+	.when('/admin/view-results', {
+		templateUrl: '../templates/viewResultsTmpl.html',
+		controller: 'adminCtrl'
+	})
+	.when('/admin/send-survey', {
+		templateUrl: '../templates/sendSurveyTmpl.html',
+		controller: 'adminCtrl'
+	})
 })
