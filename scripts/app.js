@@ -1,4 +1,4 @@
-var app = angular.module('topicSurvey', ['ngRoute']);
+var app = angular.module('topicSurvey', ['ngRoute', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
 	$routeProvider
