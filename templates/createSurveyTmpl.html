@@ -1,0 +1,65 @@
+<div class="wrapper">
+
+	<form name="createSurveyForm">
+
+		<div class="form-group">
+			<label for="topic-name">Topic Name</label>
+			<input ng-model="topicName" class="form-control" type="text">
+		</div>
+
+		<div class="form-group">
+			<label for="description">Survey Description</label>
+			<input ng-model="topicDescription" type="text" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<div id="var-names-container">
+				<label for="var-names">Variable Names</label>
+				<div ng-repeat="item in varNameContainer track by $index" class="repeatable-input-wrapper">
+					<input ng-model="item" type="text" class="form-control repeatable-input">
+					<button ng-click="removeInput('item', 'varNameContainer')" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
+				</div>
+			</div>
+			<button ng-click="addNewInput('varNameContainer')" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
+		</div>
+
+		<div class="clear"></div>
+
+		<div id="question-container">
+
+			<div class="form-group" id="question-builder">
+				<label for="title-text">Question Title Text</label>
+				<input ng-model="questionTitleText" type="text" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="help-text">Question Help Text</label>
+				<input ng-model="questionHelpText" type="text" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="question-type">Question Type</label>
+				<label><input class="radio-inline" type="radio" name="question-type">Multiple Choice</label>
+				<label><input class="radio-inline" type="radio" name="question-type">Select Many</label>
+				<label><input class="radio-inline" type="radio" name="question-type">Text</label>
+			</div>
+
+			<div class="form-group">
+				<div id="answers-container">
+					<label for="answers">Answers</label>
+					<div ng-repeat="item in answerContainer track by $index" class="repeatable-input-wrapper">
+						<input ng-model="item[$index]" type="text" class="form-control repeatable-input">
+						<button ng-click="removeInput('item', 'answerContainer')" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
+					</div>
+				</div>
+				<button ng-click="addNewInput('answerContainer')" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+
+		<button class="btn-primary">Submit</button>
+
+	</form>
+
+</div>

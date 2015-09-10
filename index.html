@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="topicSurvey" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="styles.css">
+
+	<title>SurveyMachine</title>
+</head>
+<body ng-controller="homeCtrl">
+
+<button ng-click="testGet()">GET</button>
+
+<ng-view></ng-view>
+
+
+
+<script src="/node_modules/angular/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/homeCtrl.js"></script>
+<script src="scripts/controllers/surveyCtrl.js"></script>
+<script src="scripts/controllers/adminCtrl.js"></script>
+<script src="scripts/services/homeService.js"></script>
+	
+</body>
+</html>

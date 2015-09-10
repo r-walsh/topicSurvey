@@ -7,6 +7,7 @@ var express = require('express'),
 	mongoUri = 'mongodb://localhost:27017/topicSurveys';
 // 
 app.use(bodyParser.json());
+app.use(cors());
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function() {
 	console.log('connected to mongo at ' + mongoUri);
