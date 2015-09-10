@@ -1,3 +1,15 @@
+<nav class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		Navigate <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu">
+		<li><a href="#">Dashboard</a></li>
+		<li><a href="#">Send Survey</a></li>
+		<li><a href="#">View Results</a></li>
+		<li><a href="#">Create Group</a></li>
+	</ul>
+</nav>
+
 <div class="wrapper">
 
 	<form name="createSurveyForm">
@@ -16,49 +28,51 @@
 			<div id="var-names-container">
 				<label for="var-names">Variable Names</label>
 				<div ng-repeat="item in varNameContainer track by $index" class="repeatable-input-wrapper">
-					<input ng-model="item" type="text" class="form-control repeatable-input">
-					<button ng-click="removeInput('item', 'varNameContainer')" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
+					<input ng-model="varNameContainer[$index]" type="text" class="form-control repeatable-input">
+					<button ng-click="removeInput($index, 	varNameContainer)" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
 				</div>
 			</div>
-			<button ng-click="addNewInput('varNameContainer')" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
+			<button ng-click="addNewInput(varNameContainer)" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
 		</div>
 
 		<div class="clear"></div>
 
-		<div id="question-container">
+		<div class="question-container" ng-repeat="question in questions track by $index">
 
 			<div class="form-group" id="question-builder">
 				<label for="title-text">Question Title Text</label>
-				<input ng-model="questionTitleText" type="text" class="form-control">
+				<input ng-model="question.titleText" type="text" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="help-text">Question Help Text</label>
-				<input ng-model="questionHelpText" type="text" class="form-control">
+				<input ng-model="question.helpText" type="text" class="form-control">
 			</div>
 
 			<div class="form-group">
 				<label for="question-type">Question Type</label>
-				<label><input class="radio-inline" type="radio" name="question-type">Multiple Choice</label>
-				<label><input class="radio-inline" type="radio" name="question-type">Select Many</label>
-				<label><input class="radio-inline" type="radio" name="question-type">Text</label>
+				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="multiple choice" name="question-type">Multiple Choice</label>
+				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="select many" name="question-type">Select Many</label>
+				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="text" name="question-type">Text</label>
 			</div>
 
 			<div class="form-group">
 				<div id="answers-container">
 					<label for="answers">Answers</label>
-					<div ng-repeat="item in answerContainer track by $index" class="repeatable-input-wrapper">
-						<input ng-model="item[$index]" type="text" class="form-control repeatable-input">
-						<button ng-click="removeInput('item', 'answerContainer')" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
+					<div ng-repeat="item in question.answers track by $index" class="repeatable-input-wrapper">
+						<input ng-model="question.answers[$index]" type="text" class="form-control repeatable-input">
+						<button ng-click="removeInput($index, question.answers)" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
 					</div>
 				</div>
-				<button ng-click="addNewInput('answerContainer')" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
+				<button ng-click="addNewInput(question.answers)" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
 			</div>
 		</div>
 
+		<button ng-click="addQuestion()" class="btn btn-default">Add another question</button>
+
 		<div class="clear"></div>
 
-		<button class="btn-primary">Submit</button>
+		<button ng-click="postSurveyTemplate(topicName, topicDescription, questions, varNames)" class="btn btn-primary">Submit</button>
 
 	</form>
 

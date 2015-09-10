@@ -26,3 +26,7 @@
 .remove-input {
 	float: right;
 }
+.question-container {
+	margin-top: 15px;
+	border-top: 1px solid black;
+}
