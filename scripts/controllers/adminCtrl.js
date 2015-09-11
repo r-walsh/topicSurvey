@@ -25,14 +25,14 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		})
 	}
 
-	$scope.currentRecipientIndex = 0;
+	$scope.UserObj = function(name, email) {
+		this.name = name;
+		this.email = email;
+	}
+
 	$scope.addUser = function() {
-		$scope.recipientGroup.users[$scope.currentRecipientIndex].name = $scope.username;
-		$scope.recipientGroup.users[$scope.currentRecipientIndex].email = $scope.email;
+		$scope.recipientGroup.users.push(new $scope.UserObj($scope.username, $scope.email));
 
-		$scope.recipientGroup.users.push({ name: '', email: '' });
-
-		$scope.currentRecipientIndex++;
 		$scope.username = '';
 		$scope.email = '';
 			
@@ -40,12 +40,6 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 
 	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
 		homeService.postSurveyTemplate(name, description, questions, varNames);
-	}
-
-	$scope.checkValidUser = function() {
-		if ($scope.name !== '' && $scope.email !== '') {
-			return false;
-		}
 	}
 
 	$scope.postNewGroup = function() {
@@ -61,13 +55,8 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 
 	$scope.recipientGroup = {
 		groupName: '',
-		users: [{
-			name: '',
-			email: ''
-		}]
+		users: []
 	}
 
-	$scope.username = '';
-	$scope.email = '';
 
 });

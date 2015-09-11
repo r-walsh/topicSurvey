@@ -30,4 +30,8 @@ app.config(function($routeProvider) {
 		templateUrl: '../templates/sendSurveyTmpl.html',
 		controller: 'adminCtrl'
 	})
+	.when('/admin/create-topic', {
+		templateUrl: '../templates/createTopicTmpl.html',
+		controller: 'adminCtrl'
+	})
 })

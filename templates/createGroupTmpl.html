@@ -7,6 +7,7 @@
 		<li role="menuitem"><a href="#/admin/send-survey">Send Survey</a></li>
 		<li role="menuitem"><a href="#/admin/view-results">View Results</a></li>
 		<li role="menuitem"><a href="#/admin/create-template">Create Template</a></li>
+		<li role="menuitem"><a href="#/admin/create-topic">Create Topic</a></li>
 	</ul>
 </nav>
 
@@ -40,6 +41,6 @@
 
 	<ul class="user-list">
 		<li><b>{{ recipientGroup.groupName }}</b></li>
-		<li ng-show="user.name !== ''" ng-repeat="user in recipientGroup.users track by $index">{{ user.name }}, {{ user.email }}<a href=""><span class="glyphicon glyphicon-remove"></span></a></li>
+		<li ng-show="user.name !== ''" ng-repeat="user in recipientGroup.users track by $index">{{ user.name }}, {{ user.email }}<a ng-click="removeInput($index, recipientGroup.users)" href=""><span class="glyphicon glyphicon-remove"></span></a></li>
 	</ul>
 </div>
