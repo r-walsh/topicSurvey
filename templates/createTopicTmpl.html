@@ -10,3 +10,45 @@
 		<li role="menuitem"><a href="#/admin/create-group">Create Group</a></li>
 	</ul>
 </nav>
+
+<div class="wrapper">
+	
+	<button ng-show="!newTopic" ng-click="newTopic = !newTopic" class="btn btn-default">Add a new topic</button>
+	<button ng-show="newTopic" ng-click="newTopic = !newTopic" class="btn btn-default">Add to an existing topic</button>
+
+	<form name="createTopic">
+		
+		<div ng-show="newTopic" class="form-group">
+			<label for="topic-name">Topic Name</label>
+			<input ng-model="topicName" name="topic-name" type="text" class="form-control">
+		</div>
+
+		<div ng-show="!newTopic" class="form-group">
+			<label for="existing-topic-name">Topic Name</label>
+			<select ng-options="topic._id as topic.topicName for topic in topics" ng-model="topicName" class="form-control" name="existing-topic-name"></select>
+		</div>
+
+		<div class="subject-container">
+			
+			<div class="form-group">
+				<label for="subject-name">Subject Name</label>
+				<input ng-model="subjectName" name="subject-name" type="text" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="subject-date">Date</label>
+				<input ng-model="date" name="subject-date" class="form-control" type="text">
+			</div>
+
+			<div class="form-group">
+				<label for="recipient-group">Recipient Group</label>
+				<select ng-model="selectedRecipientGroup" ng-options="group._id as group.groupName for group in recipientGroups" name="recipient-group" class="form-control"></select>
+			</div>
+
+		</div>
+
+		<button ng-click="addToExistingTopic(topicName, subjectName, date, selectedRecipientGroup)" ng-show="!newTopic" class="btn btn-primary">Submit</button>
+		<button ng-click="postNewTopic(topicName, subjectName, date, selectedRecipientGroup)" ng-show="newTopic" class="btn btn-primary">Submit</button>
+
+	</form>
+</div>

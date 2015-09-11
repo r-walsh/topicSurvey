@@ -10,14 +10,15 @@ var TopicSchema = new Schema({
 		date: Date,
 		id: String,
 		recipientGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'RecipientGroup' },
-		results: [{
-			// username: recipientGroup.users.name, //copied from recipient groups
-			// userEmail: recipientGroup.users.email, //copied from recipient groups
-			answers: [{
-				question: String,
-				answer: String
-			}]
-		}]
+		results:  Array
+		// 	[{
+		// 	// username: recipientGroup.users.name, //copied from recipient groups
+		// 	// userEmail: recipientGroup.users.email, //copied from recipient groups
+		// 	answers: [{
+		// 		question: String,
+		// 		answer: String
+		// 	}]
+		// }]
 	}]
 
 });

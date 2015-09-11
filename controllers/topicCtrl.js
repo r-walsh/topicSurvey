@@ -5,6 +5,7 @@ var Topic = require('../models/TopicModel.js');
 module.exports = {
 
 	getTopic: function(req, res) {
+		console.log('gotit');
 		Topic.find()
 		.populate('subjects.recipientGroup')
 		.exec().then(function(data, err) {
@@ -35,6 +36,9 @@ module.exports = {
 			}
 		})
 	},
+
+	// updateResults:
+	//     Topic.findByIdAndUpate(results.push {username, email, [q&a]})
 
 	deleteTopic: function(req, res) {
 		Topic.findByIdAndRemove(req.query.id).then(function(err, data) {

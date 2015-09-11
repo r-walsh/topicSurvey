@@ -10,3 +10,24 @@
 		<li role="menuitem"><a href="#/admin/create-topic">Create Topic</a></li>
 	</ul>
 </nav>
+
+<div class="wrapper">
+	<form name="sendSurvey">
+
+		<div class="form-group">
+			<label for="topic-name">Topic Name</label>
+			<input ng-model="topicName" name="topic-name" type="text" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label for="survey-select">Survey Template Select</label>
+			<select ng-options="survey._id as survey.name for survey in surveyTemplates" ng-model="selectedSurvey" class="form-control" name="survey-select"></select>
+		</div>
+
+		<div class="form-group">
+			<label for="recipientSelect">Recipient Group</label>
+			<select ng-model="selectedRecipient" ng-options="group._id as group.groupName for group in recipientGroups" name="recipientSelect" class="form-control"></select>
+		</div>
+
+	</form>
+</div>

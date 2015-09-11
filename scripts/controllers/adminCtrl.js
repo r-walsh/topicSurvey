@@ -46,6 +46,36 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		homeService.postNewGroup($scope.recipientGroup);
 	}
 
+	$scope.postNewTopic = function(topicName, subjectName, date, recipientGroup) {
+		homeService.postNewTopic(topicName, subjectName, date, recipientGroup);
+	}
+
+	// $scope.addToExistingTopic = function(topicName, subjectName, date, recipientGroup) {
+	// 	homeService.addToExistingTopic(topicName, subjectName, date, recipientGroup);
+	// }
+
+	$scope.getRecipientGroups = function() {
+		homeService.getRecipientGroups()
+			.then(function(res) {
+				$scope.recipientGroups = res.data;
+			})
+	}()
+
+	$scope.getSurveyTemplates = function() {
+		homeService.getSurveyTemplates()
+			.then(function(res) {
+				$scope.surveyTemplates = res.data;
+			})
+	}()
+
+	$scope.getTopics = function() {
+		homeService.getTopics()
+			.then(function(res) {
+				$scope.topics = res.data;
+				console.log($scope.topics);
+			})
+	}()
+
 	$scope.questions = [{
 		titleText: '',
 		helpText: '',
@@ -57,6 +87,8 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		groupName: '',
 		users: []
 	}
+
+	$scope.newTopic = false;
 
 
 });
