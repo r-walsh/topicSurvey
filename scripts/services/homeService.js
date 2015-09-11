@@ -11,7 +11,16 @@ app.service('homeService', function($http) {
 			.then(function(response) {
 				console.log(response);
 			})
-		}
+	}
+
+	this.postNewGroup = function(group) {
+		group.users.splice(group.users.length - 1, 1)
+
+		$http.post('http://0.0.0.0:8000/api/recipientGroups', group)
+			.then(function(response) {
+				console.log(response);
+			})
+	}
 
 });
 
