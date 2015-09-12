@@ -72,7 +72,6 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		homeService.getTopics()
 			.then(function(res) {
 				$scope.topics = res.data;
-				console.log($scope.topics);
 			})
 	}()
 
