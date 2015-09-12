@@ -35,6 +35,9 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 
 		$scope.username = '';
 		$scope.email = '';
+
+		var inputBox = angular.element(document.querySelector('#user-name-input'));
+		inputBox[0].focus();
 			
 	}
 
