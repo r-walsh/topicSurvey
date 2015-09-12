@@ -50,9 +50,9 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		homeService.postNewTopic(topicName, subjectName, date, recipientGroup);
 	}
 
-	// $scope.addToExistingTopic = function(topicName, subjectName, date, recipientGroup) {
-	// 	homeService.addToExistingTopic(topicName, subjectName, date, recipientGroup);
-	// }
+	$scope.addToExistingTopic = function(topicId, subjectName, date, recipientGroup) {
+		homeService.addToExistingTopic(topicId, subjectName, date, recipientGroup);
+	}
 
 	$scope.getRecipientGroups = function() {
 		homeService.getRecipientGroups()

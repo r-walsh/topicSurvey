@@ -44,13 +44,11 @@ app.service('homeService', function($http) {
 			})
 	}
 
-	this.addToExistingTopic = function(topicName, subjectName, date, recipientGroup) {
+	this.addToExistingTopic = function(topicId, subjectName, date, recipientGroup) {
 
-		console.log(topicName);
+		var updatedTopic = new SubjectTemplate(subjectName, date, recipientGroup);
 
-		var updatedTopic = new TopicTemplate(topicName, subjectName, date, recipientGroup);
-
-		$http.put('http://0.0.0.0:8000/api/topic?id=' + topicName, updatedTopic)
+		$http.put('http://0.0.0.0:8000/api/topic?id=' + topicId, updatedTopic)
 			.then(function(response) {
 				console.log(response);
 			})
@@ -73,4 +71,11 @@ TopicTemplate = function(topicName, subjectName, date, recipientGroup) {
 		recipientGroup: recipientGroup,
 		results: []
 	}]
+}
+
+SubjectTemplate = function(subjectName, date, recipientGroup) {
+	this.subjectName = subjectName;
+	this.date = new Date(date);
+	this.recipientGroup = recipientGroup;
+	this.results = [];
 }
