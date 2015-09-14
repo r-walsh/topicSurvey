@@ -1,28 +1,21 @@
 var app = angular.module('topicSurvey');
 
-app.controller('adminCtrl', function($scope, $location, homeService) {
+app.controller('adminCtrl', function($scope, $location, adminService, homeService) {
 
 	$scope.adminRedirect = function(location) {
 		$location.url(location);
 	}
 
-	$scope.varNameContainer = [''];
-
 	$scope.addNewInput = function( array ) {
-        array.push("");
+        adminService.addNewInput( array );
 	}
 
 	$scope.removeInput = function(index, array) {
-		array.splice(index, 1);
+		adminService.removeInput(index, array);
 	}
 
 	$scope.addQuestion = function() {
-		$scope.questions.push({
-			titleText: '',
-			helpText: '',
-			answers: [''],
-			questionType: ''
-		})
+		adminService.addQuestion($scope.questions)
 	}
 
 	$scope.UserObj = function(name, email) {
@@ -42,19 +35,19 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 	}
 
 	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
-		homeService.postSurveyTemplate(name, description, questions, varNames);
+		adminService.postSurveyTemplate(name, description, questions, varNames);
 	}
 
 	$scope.postNewGroup = function() {
-		homeService.postNewGroup($scope.recipientGroup);
+		adminService.postNewGroup($scope.recipientGroup);
 	}
 
 	$scope.postNewTopic = function(topicName, subjectName, date, recipientGroup) {
-		homeService.postNewTopic(topicName, subjectName, date, recipientGroup);
+		adminService.postNewTopic(topicName, subjectName, date, recipientGroup);
 	}
 
 	$scope.addToExistingTopic = function(topicId, subjectName, date, recipientGroup) {
-		homeService.addToExistingTopic(topicId, subjectName, date, recipientGroup);
+		adminService.addToExistingTopic(topicId, subjectName, date, recipientGroup);
 	}
 
 	$scope.getRecipientGroups = function() {
@@ -85,12 +78,17 @@ app.controller('adminCtrl', function($scope, $location, homeService) {
 		questionType: ''
 	}]
 
+	$scope.varNameContainer = [''];
+
 	$scope.recipientGroup = {
 		groupName: '',
 		users: []
 	}
 
 	$scope.newTopic = false;
+
+	$scope.username = '';
+	$scope.email = '';
 
 
 });
