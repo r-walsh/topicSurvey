@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var ParsedSurveySchema = new Schema({
 	publicName: String,
 	description: String,
-	subject: { type: mongoose.Schema.Types.ObjectId, ref: 'Topic' },
+	subject: Object,
 	questions: [{
 		questionText: String,
 		helpText: String,

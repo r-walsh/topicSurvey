@@ -15,7 +15,7 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 	}
 
 	$scope.addQuestion = function() {
-		adminService.addQuestion($scope.questions)
+		adminService.addQuestion($scope.questions);
 	}
 
 	$scope.UserObj = function(name, email) {
@@ -36,6 +36,21 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 
 	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
 		adminService.postSurveyTemplate(name, description, questions, varNames);
+	}
+
+	$scope.parseSurvey = function(name, description, subject, replacementText) {
+
+		var stringParseObject = {};
+
+		for (var i = 0; i < $scope.selectedSurvey.varNames.length; i++) {
+			stringParseObject[$scope.selectedSurvey.varNames[i]] = replacementText[i];
+		}
+
+		$scope.questions = $scope.selectedSurvey.questions.slice();
+
+		$scope.confirmNewSurvey = adminService.parseSurvey(name, description, subject, $scope.questions, stringParseObject);
+
+		$scope.adminRedirect('admin/confirm-survey');
 	}
 
 	$scope.postNewGroup = function() {
@@ -90,5 +105,10 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 	$scope.username = '';
 	$scope.email = '';
 
+	$scope.replacementText = [];
 
 });
+
+
+
+

@@ -12,6 +12,31 @@ app.service('adminService', function( $http ) {
 			})
 	}
 
+	this.parseSurvey = function( name, description, subject, questions, parseObject ) {
+
+		function stringParser(match) {
+			return parseObject[match];
+		}
+
+		for (var i = 0; i < questions.length; i++) {
+			for (var key in questions[i]) {
+				if ( Array.isArray(questions[i][key]) ) {
+					for (var j = 0; j < questions[i][key].length; j++) {
+						questions[i][key][j] = questions[i][key][j].replace(/\$\$.*?\$\$/g, stringParser)
+					}
+				} else {
+					questions[i][key] = questions[i][key].replace(/\$\$.*?\$\$/g, stringParser)
+				}
+			}
+		}
+
+		description = description.replace(/\$\$.*?\$\$/g, stringParser);
+
+		var newParsedSurvey = new ParsedSurveyTemplate(name, description, subject, questions);
+
+		return newParsedSurvey;
+	}
+
 	this.postNewGroup = function( group ) {
 
 		$http.post('http://0.0.0.0:8000/api/recipientGroups', group)
@@ -79,6 +104,13 @@ SubjectTemplate = function( topic, subjectName, date, recipientGroup ) {
 	this.recipientGroup = recipientGroup;
 	this.sessionId = generateSessionId(topic, this.subjectName, date);
 	this.results = [];
+}
+
+ParsedSurveyTemplate = function( name, description, subject, questions ) {
+	this.publicName = name;
+	this.description = description;
+	this.subject = subject;
+	this.questions = questions;
 }
 
 function generateSessionId( topic, subjectName, date ) {

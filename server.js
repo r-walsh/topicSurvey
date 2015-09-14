@@ -44,6 +44,7 @@ app.post('/api/surveyTemplates', surveyCtrl.addSurvey);
 app.put('/api/surveyTemplates', surveyCtrl.updateSurvey);
 
 app.delete('/api/surveyTemplates', surveyCtrl.deleteSurvey);
+
 //PARSEDSURVEY
 app.get('/api/parsedSurveys', parsedSurveyCtrl.getSurveys);
 

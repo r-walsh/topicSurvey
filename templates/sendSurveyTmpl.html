@@ -33,11 +33,13 @@
 		<div class="form-group">
 			<label for="survey-select">Survey Template Select</label>
 			<select ng-options="survey as survey.name for survey in surveyTemplates" ng-model="selectedSurvey" class="form-control" name="survey-select"></select>
-				<div class="form-group input-sub-container" ng-repeat="varName in selectedSurvey.varNames">
+				<div class="form-group input-sub-container" ng-repeat="varName in selectedSurvey.varNames track by $index">
 					<label for="{{ varName }}">Replacement value for "{{ varName }}"</label>
-					<input name="{{ varName }}" class="form-control var-names" type="text" required >
+					<input ng-model="replacementText[$index]" name="{{ varName }}" class="form-control var-names" type="text" required >
 				</div>
 		</div>
+
+		<button ng-click="parseSurvey(publicName, selectedSurvey.description, selectedSubject, replacementText)" class="btn-primary btn">Submit</button>
 
 	</form>
 </div>
