@@ -15,18 +15,28 @@
 	<form name="sendSurvey">
 
 		<div class="form-group">
-			<label for="topic-name">Topic Name</label>
-			<input ng-model="topicName" name="topic-name" type="text" class="form-control">
+			<label for="public-name">Public Survey Name</label>
+			<input ng-model="publicName" name="topic-name" type="text" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label for="topic-select">Topic</label>
+			<select ng-model="selectedTopic" ng-options="topic as topic.topicName for topic in topics" name="topic-select" class="form-control"></select>
+
+			<div ng-show="selectedTopic" class="form-group input-sub-container">
+				<label for="subject-selection">Session</label>
+				<select ng-model="selectedSubject" ng-options="subject as (subject.subjectName + ', ' + (subject.date | date) + ', ' + subject.recipientGroup.groupName) for subject in selectedTopic.subjects" class="form-control" name="subject-selection"></select>
+			</div>
+
 		</div>
 
 		<div class="form-group">
 			<label for="survey-select">Survey Template Select</label>
-			<select ng-options="survey._id as survey.name for survey in surveyTemplates" ng-model="selectedSurvey" class="form-control" name="survey-select"></select>
-		</div>
-
-		<div class="form-group">
-			<label for="recipientSelect">Recipient Group</label>
-			<select ng-model="selectedRecipient" ng-options="group._id as group.groupName for group in recipientGroups" name="recipientSelect" class="form-control"></select>
+			<select ng-options="survey as survey.name for survey in surveyTemplates" ng-model="selectedSurvey" class="form-control" name="survey-select"></select>
+				<div class="form-group input-sub-container" ng-repeat="varName in selectedSurvey.varNames">
+					<label for="{{ varName }}">Replacement value for "{{ varName }}"</label>
+					<input name="{{ varName }}" class="form-control var-names" type="text" required >
+				</div>
 		</div>
 
 	</form>

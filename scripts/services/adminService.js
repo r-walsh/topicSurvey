@@ -93,10 +93,12 @@ function generateSessionId( topic, subjectName, date ) {
 
 	var lectureDate = new Date(date),
 		lectureDay = lectureDate.getDate(),
-		lectureMonth = lectureDate.getMonth();
+		lectureMonth = lectureDate.getMonth(),
+		lectureYear = lectureDate.getFullYear();
 
 	sessionId += lectureMonth;
 	sessionId += lectureDay;
+	sessionId += lectureYear;
 
 	return sessionId;
 }

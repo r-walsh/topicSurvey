@@ -10,10 +10,4 @@ app.controller('homeCtrl', function($scope, $location, $http, homeService) {
 		}
 	}
 
-	$scope.testGet = function() {
-		$http.get('http://0.0.0.0:8000/api/topic').then(function(res) {
-			console.log(res.data);
-		})
-	}
-
 });

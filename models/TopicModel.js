@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	RecipientGroups = require('./RecipientGroupsModel.js');
+	RecipientGroups = require('./RecipientGroupsModel.js'),
+	ParsedSurvey = require('./ParsedSurveyModel.js');
 
 var TopicSchema = new Schema({
 

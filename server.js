@@ -15,7 +15,8 @@ mongoose.connection.once('open', function() {
 
 var topicCtrl = require('./controllers/topicCtrl.js'),
 	recipientCtrl = require('./controllers/recipientCtrl.js'),
-	surveyCtrl = require('./controllers/surveyCtrl.js');
+	surveyCtrl = require('./controllers/surveyCtrl.js'),
+	parsedSurveyCtrl = require('./controllers/parsedSurveyCtrl.js');
 
 //TOPIC
 app.get('/api/topic', topicCtrl.getTopic);
@@ -43,8 +44,14 @@ app.post('/api/surveyTemplates', surveyCtrl.addSurvey);
 app.put('/api/surveyTemplates', surveyCtrl.updateSurvey);
 
 app.delete('/api/surveyTemplates', surveyCtrl.deleteSurvey);
+//PARSEDSURVEY
+app.get('/api/parsedSurveys', parsedSurveyCtrl.getSurveys);
 
+app.post('/api/parsedSurveys', parsedSurveyCtrl.addSurvey);
 
+app.put('/api/parsedSurveys', parsedSurveyCtrl.updateSurvey);
+
+app.delete('/api/parsedSurveys', parsedSurveyCtrl.deleteSurvey);
 
 
 
