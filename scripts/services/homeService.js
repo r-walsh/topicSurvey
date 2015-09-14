@@ -11,7 +11,7 @@ app.service('homeService', function($http) {
 	}
 
 	this.getTopics = function() {
-		return $http.get('http://0.0.0.0:8000/api/topic')
+		return $http.get('http://0.0.0.0:8000/api/topic');
 	}
 
 });

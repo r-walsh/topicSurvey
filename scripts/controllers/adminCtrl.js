@@ -46,8 +46,9 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 		adminService.postNewTopic(topicName, subjectName, date, recipientGroup);
 	}
 
-	$scope.addToExistingTopic = function(topicId, subjectName, date, recipientGroup) {
-		adminService.addToExistingTopic(topicId, subjectName, date, recipientGroup);
+	$scope.addToExistingTopic = function(topic, subjectName, date, recipientGroup) {
+		console.log(topic);
+		adminService.addToExistingTopic(topic, subjectName, date, recipientGroup);
 	}
 
 	$scope.getRecipientGroups = function() {

@@ -8,17 +8,9 @@ var TopicSchema = new Schema({
 	subjects: [{
 		subjectName: String,
 		date: Date,
-		id: String,
+		sessionId: String,
 		recipientGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'RecipientGroup' },
 		results:  Array
-		// 	[{
-		// 	// username: recipientGroup.users.name, //copied from recipient groups
-		// 	// userEmail: recipientGroup.users.email, //copied from recipient groups
-		// 	answers: [{
-		// 		question: String,
-		// 		answer: String
-		// 	}]
-		// }]
 	}]
 
 });

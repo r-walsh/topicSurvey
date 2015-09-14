@@ -25,7 +25,7 @@
 
 		<div ng-show="!newTopic" class="form-group">
 			<label for="existing-topic-name">Topic Name</label>
-			<select ng-options="topic._id as topic.topicName for topic in topics" ng-model="topicName" class="form-control" name="existing-topic-name"></select>
+			<select ng-options="topic as topic.topicName for topic in topics" ng-model="topic" class="form-control" name="existing-topic-name"></select>
 		</div>
 
 		<div class="subject-container">
@@ -47,7 +47,7 @@
 
 		</div>
 
-		<button ng-click="addToExistingTopic(topicName, subjectName, date, selectedRecipientGroup)" ng-show="!newTopic" class="btn btn-primary">Submit</button>
+		<button ng-click="addToExistingTopic(topic, subjectName, date, selectedRecipientGroup)" ng-show="!newTopic" class="btn btn-primary">Submit</button>
 		<button ng-click="postNewTopic(topicName, subjectName, date, selectedRecipientGroup)" ng-show="newTopic" class="btn btn-primary">Submit</button>
 
 	</form>
