@@ -134,3 +134,7 @@ function generateSessionId( topic, subjectName, date ) {
 
 	return sessionId;
 }
+
+
+
+

@@ -54,6 +54,7 @@
 		<div ng-repeat="question in confirmNewSurvey.questions" class="form-group">
 			<label>{{ question.titleText }}</label>
 			<p ng-show="question.helpText">{{ question.helpText }}</p>
+			<question-type question="question"></question-type>
 		</div>
 
 	</form>

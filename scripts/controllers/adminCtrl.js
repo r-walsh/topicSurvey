@@ -49,6 +49,8 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 		$scope.questions = $scope.selectedSurvey.questions.slice();
 
 		$scope.confirmNewSurvey = adminService.parseSurvey(name, description, subject, $scope.questions, stringParseObject);
+
+		$scope.questions = $scope.confirmNewSurvey.questions;
 	}
 
 	$scope.postNewGroup = function() {
