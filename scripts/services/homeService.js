@@ -14,5 +14,9 @@ app.service('homeService', function($http) {
 		return $http.get('http://0.0.0.0:8000/api/topic');
 	}
 
+	this.getParsedSurveys = function() {
+		return $http.get('http://0.0.0.0:8000/api/parsedSurveys')
+	}
+
 });
 

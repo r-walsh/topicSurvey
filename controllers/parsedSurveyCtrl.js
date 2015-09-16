@@ -2,14 +2,8 @@ var ParsedSurvey = require('../models/ParsedSurveyModel.js');
 
 module.exports = {
 	getSurveys: function(req, res) {
-		ParsedSurvey.find()
-		.populate('subject')
-		.exec().then(function(data, err) {
-			if (err) {
-				res.error(500).send(err);
-			} else {
-				res.send(data);
-			}
+		ParsedSurvey.find().then(function(data) {
+			res.send(data);
 		})
 	},
 

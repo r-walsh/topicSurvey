@@ -14,7 +14,15 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 			})
 	}
 
-	this.parseSurvey = function( name, description, subject, questions, parseObject ) {
+	this.postParsedSurvey = function( parsedSurvey ) {
+		console.log(parsedSurvey)
+		$http.post('http://0.0.0.0:8000/api/parsedSurveys', parsedSurvey)
+			.then(function(response) {
+				console.log(response);
+			})
+	}
+
+	this.parseSurvey = function( topicName, name, description, subject, questions, parseObject ) {
 
 		function stringParser(match) {
 			return parseObject[match];
@@ -34,7 +42,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		description = description.replace(/\$\$.*?\$\$/g, stringParser);
 
-		var newParsedSurvey = new surveyService.ParsedSurveyTemplate(name, description, subject, questions);
+		var newParsedSurvey = new surveyService.ParsedSurveyTemplate( topicName, name, description, subject, questions );
 
 		return newParsedSurvey;
 	}

@@ -4,13 +4,26 @@ var mongoose = require('mongoose'),
 
 var ParsedSurveySchema = new Schema({
 	publicName: String,
+	topicName: String,
 	description: String,
-	subject: Object,
+	subject: {
+		subjectName: String,
+		date: Date,
+		sessionId: String,
+		recipientGroup: {
+			groupName: String,
+			users: [{
+				name: String,
+				email: String
+			}]
+		},
+		results:  Array
+	},
 	questions: [{
-		questionText: String,
+		titleText: String,
 		helpText: String,
-		questionType: String,
-		Answers: Array
+		answers: Array,
+		questionType: String
 	}]
 });
 

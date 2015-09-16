@@ -1,8 +1,14 @@
-<label class="btn btn-default" ng-if="question.questionType === 'multiple-choice'" ng-repeat="answer in question.answers track by $index" for="titleText">
-<input class="form-control" name="titleText" ng-if="question.questionType === 'multiple-choice'" type="radio">{{ answer }}</label>
+<div ng-if="question.questionType === 'multiple-choice'" ng-repeat="answer in question.answers track by $index" class="form-group">
+	<label for="{{ question.titleText }}">{{ answer }}</label>
+	<input class="form-control" type="radio" name="{{ question.titleText }}">
+</div>
 
-<label class="btn btn-default" ng-if="question.questionType === 'select-many'" ng-repeat="answer in question.answers track by $index" for="titleText">
-<input class="form-control" name="titleText" ng-if="question.questionType === 'select-many'" type="checkbox">{{ answer }}</label>
+<div ng-repeat="answer in question.answers track by $index" ng-if="question.questionType === 'select-many'" class="form-group">
+	<label for="{{ question.titleText }}">{{ answer }}</label>
+	<input name ="{{ question.titleText }}" class="form-control" type="checkbox">
+</div>
 
-<label ng-if="question.questionType === 'text'" ng-repeat="answer in question.answers track by $index" for="titleText">{{ answer }}</label>
-<input class="form-control" name="titleText" ng-if="question.questionType === 'text'" ng-repeat="answer in question.answers track by $index" type="text">
+<div ng-if="question.questionType === 'text'" ng-repeat="answer in question.answers track by $index" class="form-group">
+	<label for="{{ question.titleText }}">{{ answer }}</label>
+	<input class="form-control" name="{{ question.titleText }}" type="text">
+</div>

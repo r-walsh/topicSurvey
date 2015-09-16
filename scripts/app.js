@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 		templateUrl: '../templates/openSurveysTmpl.html',
 		controller: 'surveyCtrl'
 	})
+	.when('/open-surveys/:sessionId', {
+		templateUrl: '../templates/takeSurveyTmpl.html',
+		controller: 'surveyCtrl'
+	})
 	.when('/admin', {
 		templateUrl: '../templates/adminTmpl.html',
 		controller: 'adminCtrl'

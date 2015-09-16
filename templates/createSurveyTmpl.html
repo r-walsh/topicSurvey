@@ -41,9 +41,9 @@
 
 			<div class="form-group">
 				<label for="question-type">Question Type</label>
-				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="multiple-choice" name="question-type">Multiple Choice</label>
-				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="select-many" name="question-type">Select Many</label>
-				<label><input class="radio-inline" type="radio" ng-model="question.questionType" value="text" name="question-type">Text</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="multiple-choice" name="question-type{{$index}}">Multiple Choice</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="select-many" name="question-type{{$index}}">Select Many</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="text" name="question-type{{$index}}">Text</label>
 			</div>
 
 			<div class="form-group">

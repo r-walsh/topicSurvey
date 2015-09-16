@@ -1,12 +1,16 @@
 var app = angular.module('topicSurvey');
 
-app.controller('surveyCtrl', function($scope, homeService) {
+app.controller('surveyCtrl', function($scope, homeService, openSurveyService) {
 
-	$scope.getSurveys = function( user ) {
-		homeService.getSurveyTemplates()
-			.then(function( res ) {
-				$scope.surveys = res.data;
-			})
-	}()
+	$scope.openSurveys = openSurveyService.findOpenSurveys();
 	
+	$scope.changeSelectedSurvey = function( survey ) {
+		openSurveyService.changeSelectedSurvey( survey )
+	}
+
+	$scope.getSelectedSurvey = function() {
+		return JSON.parse(localStorage.getItem('selectedSurvey'));
+	}
+
+	$scope.selectedSurvey = $scope.getSelectedSurvey();
 })
