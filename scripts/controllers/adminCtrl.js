@@ -34,10 +34,6 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 			
 	}
 
-	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
-		adminService.postSurveyTemplate(name, description, questions, varNames);
-	}
-
 	$scope.parseSurvey = function(name, description, subject, replacementText) {
 
 		var stringParseObject = {};
@@ -53,6 +49,8 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 		$scope.questions = $scope.confirmNewSurvey.questions;
 	}
 
+	////////POST
+
 	$scope.postNewGroup = function() {
 		adminService.postNewGroup($scope.recipientGroup);
 	}
@@ -64,6 +62,12 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 	$scope.addToExistingTopic = function(topic, subjectName, date, recipientGroup) {
 		adminService.addToExistingTopic(topic, subjectName, date, recipientGroup);
 	}
+
+	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
+		adminService.postSurveyTemplate(name, description, questions, varNames);
+	}
+
+	////////GET
 
 	$scope.getRecipientGroups = function() {
 		homeService.getRecipientGroups()
@@ -85,6 +89,8 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 				$scope.topics = res.data;
 			})
 	}()
+
+	////////NG-MODEL STUFF
 
 	$scope.questions = [{
 		titleText: '',

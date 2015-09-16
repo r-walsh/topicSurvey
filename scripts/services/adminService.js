@@ -1,10 +1,12 @@
 var app = angular.module('topicSurvey');
 
-app.service('adminService', function( $http ) {
+app.service('adminService', function( $http, topicService, surveyService, subjectService ) {
+
+	////////SURVEYS
 
 	this.postSurveyTemplate = function( name, description, questions, varNames ) {
 
-		var newSurvey = new SurveyTemplate( name, description, questions, varNames );
+		var newSurvey = new surveyService.SurveyTemplate( name, description, questions, varNames );
 
 		$http.post('http://0.0.0.0:8000/api/surveyTemplates', newSurvey)
 			.then(function(response) {
@@ -32,10 +34,12 @@ app.service('adminService', function( $http ) {
 
 		description = description.replace(/\$\$.*?\$\$/g, stringParser);
 
-		var newParsedSurvey = new ParsedSurveyTemplate(name, description, subject, questions);
+		var newParsedSurvey = new surveyService.ParsedSurveyTemplate(name, description, subject, questions);
 
 		return newParsedSurvey;
 	}
+
+	/////////GROUPS
 
 	this.postNewGroup = function( group ) {
 
@@ -45,9 +49,11 @@ app.service('adminService', function( $http ) {
 			})
 	}
 
+	//////////TOPICS
+
 	this.postNewTopic = function( topicName, subjectName, date, recipientGroup ) {
 
-		var newTopic = new TopicTemplate(topicName, subjectName, date, recipientGroup);
+		var newTopic = new topicService.TopicTemplate(topicName, subjectName, date, recipientGroup);
 
 		$http.post('http://0.0.0.0:8000/api/topic', newTopic)
 			.then(function(response) {
@@ -57,7 +63,7 @@ app.service('adminService', function( $http ) {
 
 	this.addToExistingTopic = function( topic, subjectName, date, recipientGroup ) {
 
-		var updatedTopic = new SubjectTemplate(topic, subjectName, date, recipientGroup);
+		var updatedTopic = new subjectService.SubjectTemplate(topic, subjectName, date, recipientGroup);
 
 		console.log(updatedTopic);
 
@@ -66,6 +72,8 @@ app.service('adminService', function( $http ) {
 				console.log(response);
 			})
 	}
+
+	///////GENERAL
 
 	this.addNewInput = function( array ) {
         array.push("");
@@ -85,55 +93,6 @@ app.service('adminService', function( $http ) {
 	}
 
 });
-
-SurveyTemplate = function( name, description, questions, varNames ) {
-	this.name = name;
-	this.description = description;
-	this.questions = questions;
-	this.varNames = varNames;
-}
-
-TopicTemplate = function( topicName, subjectName, date, recipientGroup ) {
-	this.topicName = topicName;
-	this.subjects = new SubjectTemplate(this, subjectName, date, recipientGroup);
-}
-
-SubjectTemplate = function( topic, subjectName, date, recipientGroup ) {
-	this.subjectName = subjectName;
-	this.date = new Date(date);
-	this.recipientGroup = recipientGroup;
-	this.sessionId = generateSessionId(topic, this.subjectName, date);
-	this.results = [];
-}
-
-ParsedSurveyTemplate = function( name, description, subject, questions ) {
-	this.publicName = name;
-	this.description = description;
-	this.subject = subject;
-	this.questions = questions;
-}
-
-function generateSessionId( topic, subjectName, date ) {
-	var sessionId = '',
-		nameSplit = topic.topicName.split(' ');
-
-	for (var i = 0; i < nameSplit.length; i++) {
-		nameSplit[i].split('');
-
-		sessionId += nameSplit[i][0];
-	}
-
-	var lectureDate = new Date(date),
-		lectureDay = lectureDate.getDate(),
-		lectureMonth = lectureDate.getMonth(),
-		lectureYear = lectureDate.getFullYear();
-
-	sessionId += lectureMonth;
-	sessionId += lectureDay;
-	sessionId += lectureYear;
-
-	return sessionId;
-}
 
 
 
