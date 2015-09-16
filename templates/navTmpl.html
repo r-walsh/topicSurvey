@@ -1,0 +1,13 @@
+<nav class="btn-group admin-nav" dropdown is-open="status.isopen">
+	<button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
+		Navigation<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+		<li role="menuitem"><a href="#/admin">Dashboard</a></li>
+		<li location="location" role="menuitem"><a href="#/admin/send-survey">Send Survey <span ng-if="location == '/admin/send-survey'"  class="glyphicon glyphicon-circle-arrow-left"></span></a></li>
+		<li location="location" role="menuitem"><a href="#/admin/view-results">View Results <span ng-if="location == '/admin/view-results'" class="glyphicon glyphicon-circle-arrow-left"></span></a></li>
+		<li location="location" role="menuitem"><a href="#/admin/create-template">Create Template <span ng-if="location == '/admin/create-template'" class="glyphicon glyphicon-circle-arrow-left"></span></a></li>
+		<li location="location" role="menuitem"><a href="#/admin/create-group">Create Group <span ng-if="location == '/admin/create-group'" class="glyphicon glyphicon-circle-arrow-left"></span></a></li>
+		<li location="location" role="menuitem"><a href="#/admin/create-topic">Create Topic <span ng-if="location == '/admin/create-topic'" class="glyphicon glyphicon-circle-arrow-left"></span></a></li>
+	</ul>
+</nav>

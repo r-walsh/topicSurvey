@@ -2,6 +2,8 @@ var app = angular.module('topicSurvey');
 
 app.controller('adminCtrl', function($scope, $location, adminService, homeService) {
 
+	$scope.location = $location.path();
+
 	$scope.adminRedirect = function(location) {
 		$location.url(location);
 	}
