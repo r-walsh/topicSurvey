@@ -1,6 +1,6 @@
 var app = angular.module('topicSurvey');
 
-app.service('adminService', function( $http, topicService, surveyService, subjectService ) {
+app.service('adminService', function( $http, topicService, surveyService, subjectService, connectionInfo ) {
 
 	////////SURVEYS
 
@@ -8,7 +8,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		var newSurvey = new surveyService.SurveyTemplate( name, description, questions, varNames );
 
-		$http.post('http://0.0.0.0:8000/api/surveyTemplates', newSurvey)
+		$http.post(connectionInfo.url + '/api/surveyTemplates', newSurvey)
 			.then(function(response) {
 				console.log(response);
 			})
@@ -16,7 +16,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 	this.postParsedSurvey = function( parsedSurvey ) {
 		console.log(parsedSurvey)
-		$http.post('http://0.0.0.0:8000/api/parsedSurveys', parsedSurvey)
+		$http.post(connectionInfo.url + '/api/parsedSurveys', parsedSurvey)
 			.then(function(response) {
 				console.log(response);
 			})
@@ -51,7 +51,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 	this.postNewGroup = function( group ) {
 
-		$http.post('http://0.0.0.0:8000/api/recipientGroups', group)
+		$http.post(connectionInfo.url + '/api/recipientGroups', group)
 			.then(function(response) {
 				console.log(response);
 			})
@@ -63,7 +63,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		var newTopic = new topicService.TopicTemplate(topicName, subjectName, date, recipientGroup);
 
-		$http.post('http://0.0.0.0:8000/api/topic', newTopic)
+		$http.post(connectionInfo.url + '/api/topic', newTopic)
 			.then(function(response) {
 				console.log(response);
 			})
@@ -75,7 +75,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		console.log(updatedTopic);
 
-		$http.put('http://0.0.0.0:8000/api/topic?id=' + topic._id, updatedTopic)
+		$http.put(connectionInfo.url + '/api/topic?id=' + topic._id, updatedTopic)
 			.then(function(response) {
 				console.log(response);
 			})

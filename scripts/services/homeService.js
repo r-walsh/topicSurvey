@@ -1,21 +1,21 @@
 var app = angular.module('topicSurvey');
 
-app.service('homeService', function($http) {
+app.service('homeService', function( $http, connectionInfo ) {
 
 	this.getRecipientGroups = function() {
-		return $http.get('http://0.0.0.0:8000/api/recipientGroups');
+		return $http.get(connectionInfo.url + '/api/recipientGroups');
 	}
 
 	this.getSurveyTemplates = function() {
-		return $http.get('http://0.0.0.0:8000/api/surveyTemplates');
+		return $http.get(connectionInfo.url + '/api/surveyTemplates');
 	}
 
 	this.getTopics = function() {
-		return $http.get('http://0.0.0.0:8000/api/topic');
+		return $http.get(connectionInfo.url + '/api/topic');
 	}
 
 	this.getParsedSurveys = function() {
-		return $http.get('http://0.0.0.0:8000/api/parsedSurveys')
+		return $http.get(connectionInfo.url + '/api/parsedSurveys')
 	}
 
 });

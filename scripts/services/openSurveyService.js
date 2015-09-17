@@ -1,6 +1,6 @@
 var app = angular.module('topicSurvey');
 
-app.service('openSurveyService', function( $http, fakeAuthService, homeService ) {
+app.service('openSurveyService', function( $http, fakeAuthService, homeServic, connectionInfo ) {
 
 	this.findOpenSurveys = function() {
 		var user = localStorage.getItem('currentUser'),
@@ -28,7 +28,7 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService )
 
 	this.postCompletedSurvey = function( response, selectedSurvey ) {
 		console.log(selectedSurvey.subject._id);
-		$http.put('http://0.0.0.0:8000/api/topic/results?id=' + selectedSurvey.topicId + '&subjectId=' + selectedSurvey.subject._id, response)
+		$http.put(connectionInfo.url + '/api/topic/results?id=' + selectedSurvey.topicId + '&subjectId=' + selectedSurvey.subject._id, response)
 			.then(function(res) {
 				console.log(res);
 			})

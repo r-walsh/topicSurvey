@@ -1,5 +1,9 @@
 var app = angular.module('topicSurvey', ['ngRoute', 'ui.bootstrap']);
 
+app.constant('connectionInfo', {
+	url: 'http://0.0.0.0:8000'
+})
+
 app.config(function($routeProvider) {
 	$routeProvider
 	.when('/', {
