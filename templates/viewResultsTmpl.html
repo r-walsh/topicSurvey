@@ -2,4 +2,26 @@
 
 <div class="wrapper">
 	
+	<div class="form-group">
+		<label for="topic-select">Topic</label>
+		<select ng-model="selectedTopic" ng-options="topic as topic.topicName for topic in topics" name="topic-select" class="form-control"></select>
+
+		<div ng-show="selectedTopic" class="form-group input-sub-container">
+			<label for="subject-selection">Session</label>
+			<select ng-model="selectedSubject" ng-options="subject as (subject.subjectName + ', ' + (subject.date | date) + ', ' + subject.recipientGroup.groupName) for subject in selectedTopic.subjects" class="form-control" name="subject-selection"></select>
+		</div>
+
+	</div>
+
+	<table ng-show="selectedSubject" class="table table-hover table-striped">
+
+		<tr><th>Test</th><th>Test</th><th>Test</th><th>Test</th></tr>
+		<tr><td>Test</td><td>Test</td><td>Test</td><td>Test</td></tr>
+		<tr><td>Test</td><td>Test</td><td>Test</td><td>Test</td></tr>
+
+	</table>
 </div>
+
+<p ng-repeat="(key,val) in selectedSubject.results">{{key}}: {{val}}</p>
+
+<pre>{{selectedTopic | json}}</pre>
