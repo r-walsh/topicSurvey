@@ -37,6 +37,7 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 	}
 
 	$scope.parseSurvey = function( name, description, subject, replacementText ) {
+		console.log(subject);
 
 		var stringParseObject = {};
 
@@ -46,8 +47,7 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 
 		$scope.questions = $scope.selectedSurvey.questions.slice();
 
-		$scope.confirmNewSurvey = adminService.parseSurvey( $scope.selectedTopic.topicName, name, description, subject, $scope.questions, stringParseObject );
-		console.log($scope.confirmNewSurvey)
+		$scope.confirmNewSurvey = adminService.parseSurvey( $scope.selectedTopic._id, $scope.selectedTopic.topicName, name, description, subject, $scope.questions, stringParseObject );
 
 		$scope.questions = $scope.confirmNewSurvey.questions;
 	}

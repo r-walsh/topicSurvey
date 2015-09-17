@@ -5,11 +5,13 @@ var mongoose = require('mongoose'),
 var ParsedSurveySchema = new Schema({
 	publicName: String,
 	topicName: String,
+	topicId: String,
 	description: String,
 	subject: {
 		subjectName: String,
 		date: Date,
 		sessionId: String,
+		_id: String,
 		recipientGroup: {
 			groupName: String,
 			users: [{

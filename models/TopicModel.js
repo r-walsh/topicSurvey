@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
-	RecipientGroups = require('./RecipientGroupsModel.js'),
-	ParsedSurvey = require('./ParsedSurveyModel.js');
+	RecipientGroups = require('./RecipientGroupsModel.js');
 
 var TopicSchema = new Schema({
 
@@ -13,7 +12,7 @@ var TopicSchema = new Schema({
 		recipientGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'RecipientGroup' },
 		results:  Array
 	}]
-
+		
 });
 
 module.exports = mongoose.model('Topic', TopicSchema);

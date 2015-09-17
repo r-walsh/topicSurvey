@@ -12,5 +12,12 @@ app.controller('surveyCtrl', function($scope, homeService, openSurveyService) {
 		return JSON.parse(localStorage.getItem('selectedSurvey'));
 	}
 
+	$scope.testFunc = function() {
+		console.log($scope.surveyResponse);
+		openSurveyService.postCompletedSurvey($scope.surveyResponse, $scope.selectedSurvey)
+	}
+
 	$scope.selectedSurvey = $scope.getSelectedSurvey();
+
+	$scope.surveyResponse = {};
 })

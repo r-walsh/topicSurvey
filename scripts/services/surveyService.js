@@ -11,9 +11,10 @@ app.factory('surveyService', function() {
 			this.varNames = varNames;
 		},
 
-		ParsedSurveyTemplate: function( topicName, name, description, subject, questions ) {
+		ParsedSurveyTemplate: function( topicId, topicName, name, description, subject, questions ) {
 			this.publicName = name;
 			this.topicName = topicName;
+			this.topicId = topicId;
 			this.description = description;
 			this.subject = subject;
 			this.questions = questions;

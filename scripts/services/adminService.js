@@ -22,7 +22,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 			})
 	}
 
-	this.parseSurvey = function( topicName, name, description, subject, questions, parseObject ) {
+	this.parseSurvey = function( topicId, topicName, name, description, subject, questions, parseObject ) {
 
 		function stringParser(match) {
 			return parseObject[match];
@@ -42,7 +42,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		description = description.replace(/\$\$.*?\$\$/g, stringParser);
 
-		var newParsedSurvey = new surveyService.ParsedSurveyTemplate( topicName, name, description, subject, questions );
+		var newParsedSurvey = new surveyService.ParsedSurveyTemplate( topicId, topicName, name, description, subject, questions );
 
 		return newParsedSurvey;
 	}

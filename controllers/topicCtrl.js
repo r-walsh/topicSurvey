@@ -37,6 +37,19 @@ module.exports = {
 		})
 	},
 
+	pushResults: function(req, res) {
+		Topic.findById(req.query.id, function(err, topic) {
+			topic.subjects.id(req.query.subjectId).results.push(req.body)
+				topic.save(function(err, data) {
+					if (err) {
+						res.status(500).send(err);
+					} else {
+						res.send(data);
+					}
+				})
+		})
+	},
+
 	deleteTopic: function(req, res) {
 		Topic.findByIdAndRemove(req.query.id).then(function(err, data) {
 			if (err) {
