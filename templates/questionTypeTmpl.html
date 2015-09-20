@@ -1,14 +1,14 @@
-<div ng-if="question.questionType === 'multiple-choice'" ng-repeat="answer in question.answers track by $index" class="form-group">
+<div ng-if="question.questionType === 'radio'" ng-repeat="answer in question.answers track by $index" class="form-group">
 	<label for="{{ question.titleText }}">{{ answer }}</label>
-	<input ng-model="surveyResponse[question.titleText]" value="{{ answer }}" class="form-control" type="radio" name="{{ question.titleText }}">
+	<input value="{{ answer }}" class="form-control" type="radio" name="{{ question.titleText }}">
 </div>
 
-<div ng-repeat="answer in question.answers track by $index" ng-if="question.questionType === 'select-many'" class="form-group">
+<div ng-repeat="answer in question.answers track by $index" ng-if="question.questionType === 'multiCheckbox'" class="form-group">
 	<label for="{{ question.titleText }}">{{ answer }}</label>
-	<input ng-model="surveyResponse[question.titleText][answer]" value="{{ answer }}" name ="{{ question.titleText }}" class="form-control" type="checkbox">
+	<input value="{{ answer }}" name ="{{ question.titleText }}" class="form-control" type="checkbox">
 </div>
 
-<div ng-if="question.questionType === 'text'" ng-repeat="answer in question.answers track by $index" class="form-group">
+<div ng-if="question.questionType === 'input'" ng-repeat="answer in question.answers track by $index" class="form-group">
 	<label for="{{ question.titleText }}">{{ answer }}</label>
-	<input ng-model="surveyResponse[question.titleText]" class="form-control" name="{{ question.titleText }}" type="text">
+	<input class="form-control" name="{{ question.titleText }}" type="text">
 </div>

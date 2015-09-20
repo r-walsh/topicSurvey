@@ -18,7 +18,8 @@ app.factory('surveyService', function() {
 			this.description = description;
 			this.subject = subject;
 			this.questions = questions;
-		}
+		},
+
 	}
 
 });

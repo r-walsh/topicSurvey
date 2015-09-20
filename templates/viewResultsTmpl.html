@@ -22,6 +22,8 @@
 	</table>
 </div>
 
-<p ng-repeat="(key,val) in selectedSubject.results">{{key}}: {{val}}</p>
+<p ng-repeat="key in selectedSubject.results">
+	<p ng-repeat="prop in selectedSubject.results[key]">{{prop}}: {{selectedSubject.results[key][prop]}}</p>
+</p>
 
 <pre>{{selectedTopic | json}}</pre>

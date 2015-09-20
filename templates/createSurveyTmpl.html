@@ -19,7 +19,7 @@
 				<label for="var-names">Variable Names</label>
 				<div ng-repeat="item in varNameContainer track by $index" class="repeatable-input-wrapper">
 					<input ng-model="varNameContainer[$index]" type="text" class="form-control repeatable-input">
-					<button ng-click="removeInput($index, 	varNameContainer)" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
+					<button ng-click="removeInput($index, varNameContainer)" class="btn btn-default remove-input"><span class="glyphicon glyphicon-remove"></span></button>
 				</div>
 			</div>
 			<button ng-click="addNewInput(varNameContainer)" class="btn btn-default add-new"><span class="glyphicon glyphicon-plus"></span></button>
@@ -41,9 +41,9 @@
 
 			<div class="form-group">
 				<label for="question-type">Question Type</label>
-				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="multiple-choice" name="question-type{{$index}}">Multiple Choice</label>
-				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="select-many" name="question-type{{$index}}">Select Many</label>
-				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="text" name="question-type{{$index}}">Text</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="radio" name="question-type{{$index}}">Multiple Choice</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="multiCheckbox" name="question-type{{$index}}">Select Many</label>
+				<label class="radio-inline"><input class="radio-inline" type="radio" ng-model="question.questionType" value="input" name="question-type{{$index}}">Text</label>
 			</div>
 
 			<div class="form-group">

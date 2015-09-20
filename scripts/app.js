@@ -1,4 +1,4 @@
-var app = angular.module('topicSurvey', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('topicSurvey', ['ngRoute', 'ui.bootstrap', 'formly', 'formlyBootstrap']);
 
 app.constant('connectionInfo', {
 	url: 'http://0.0.0.0:8000'

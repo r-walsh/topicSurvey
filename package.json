@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.4.6",
+    "angular-formly": "^7.1.2",
+    "angular-formly-templates-bootstrap": "^6.1.0",
+    "api-check": "^7.5.0",
     "body-parser": "^1.13.3",
     "bootstrap": "^3.3.5",
     "cors": "^2.7.1",

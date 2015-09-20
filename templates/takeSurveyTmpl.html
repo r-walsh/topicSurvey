@@ -1,17 +1,16 @@
 <div class="wrapper">
-	<form name="">
+
+	<form name="takeSurvey">
 
 		<h2>{{ selectedSurvey.publicName }}</h2>
 
 		<h4>{{ selectedSurvey.description }}</h4>
 		
-		<div ng-repeat="question in selectedSurvey.questions track by $index" class="form-group">
-			<label>{{ question.titleText }}</label>
-			<p ng-show="question.helpText">{{ question.helpText }}</p>
-			<question-type question="question"></question-type>
-		</div>
+		
+		<formly-form model="response" fields="formlyData">
+			<button ng-click="postResponse()" class="btn btn-primary">Submit</button>
+		</formly-form>
 
 	</form>
 
-	<button ng-click="testFunc()" class="btn-primary btn">Submit</button>
 </div>
