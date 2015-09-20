@@ -21,14 +21,14 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 			return openSurveys;
 	}
 
-	this.parseFormlyData = function( survey ) {
+	this.parseToFormlyData = function( survey ) {
 		var questions = survey.questions,
 			formlyArray = [];
 
 		for (var i = 0; i < questions.length; i++) {
 			
 			formlyArray.push({
-				key: questions[i].titleText,
+				key: questions[i]._id,
 				type: questions[i].questionType,
 				templateOptions: {
 					label: questions[i].titleText,
@@ -50,6 +50,7 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 				}
 			}
 		}
+		console.log(JSON.stringify(formlyArray));
 		return formlyArray;
 	}
 

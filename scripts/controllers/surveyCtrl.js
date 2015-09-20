@@ -19,7 +19,7 @@ app.controller('surveyCtrl', function($scope, homeService, openSurveyService) {
 	$scope.selectedSurvey = $scope.getSelectedSurvey();
 
 
-	$scope.formlyData = openSurveyService.parseFormlyData( $scope.selectedSurvey )
+	$scope.formlyData = openSurveyService.parseToFormlyData( $scope.selectedSurvey )
 
 	$scope.response = {};
 
