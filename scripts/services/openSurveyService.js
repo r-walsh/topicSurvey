@@ -62,7 +62,8 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 	}
 
 	this.postCompletedSurvey = function( response, selectedSurvey ) {
-		console.log(response);
+		response.surveyId = selectedSurvey._id;
+		console.log(response)
 		$http.put(connectionInfo.url + '/api/topic/results?id=' + selectedSurvey.topicId + '&subjectId=' + selectedSurvey.subject._id, response)
 			.then(function(res) {
 				console.log(res);

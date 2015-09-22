@@ -48,26 +48,26 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 	}
 
 	this.findQuestions = function( results, surveys ) {
-
-		var resultIds = Object.keys(results[0]);
 		
 		for (var i = 0; i < surveys.length; i++) {
 
-			if (resultIds.indexOf(surveys[i].questions[0]._id) !== -1) {
+			if ( results !== undefined && results[0].surveyId === surveys[i]._id ) {
 
 				var questions = surveys[i].questions;
+
 
 				var resultMap = questions.reduce(function( map, question ) {
 			        if( !map[ question._id ] ) {
 			                map[ question._id ] = { question: question.titleText, answers: [] };
 			        }
-		 
-		        return map;
+		        	return map;
 				}, {});
 			 
 				results.forEach(function( result ) {
 				        for( var questionId in result ) {
-			                resultMap[ questionId ].answers.push( result[ questionId ] );
+				        	if (questionId !== 'surveyId') {
+				                resultMap[ questionId ].answers.push( result[ questionId ] );
+				            }
 				        }
 				});
 				 
@@ -77,6 +77,7 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 			}
 
 		}
+
 		return grouped;
 	}
 
