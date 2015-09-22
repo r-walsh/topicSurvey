@@ -1,6 +1,6 @@
 var app = angular.module('topicSurvey');
 
-app.controller('surveyCtrl', function($scope, homeService, openSurveyService) {
+app.controller('surveyCtrl', function($scope, homeService, openSurveyService, $location) {
 
 	$scope.openSurveys = openSurveyService.findOpenSurveys();
 	
@@ -13,7 +13,9 @@ app.controller('surveyCtrl', function($scope, homeService, openSurveyService) {
 	}
 
 	$scope.postResponse = function() {
-		openSurveyService.postCompletedSurvey( $scope.response, $scope.selectedSurvey )
+		openSurveyService.postCompletedSurvey( $scope.response, $scope.selectedSurvey );
+
+		$location.url('/open-surveys');
 	}
 
 	$scope.selectedSurvey = $scope.getSelectedSurvey();

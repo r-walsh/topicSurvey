@@ -32,4 +32,6 @@
 		<li><b>{{ recipientGroup.groupName }}</b></li>
 		<li ng-show="user.name !== ''" ng-repeat="user in recipientGroup.users track by $index">{{ user.name }}, {{ user.email }}<a ng-click="removeInput($index, recipientGroup.users)" href=""><span class="glyphicon glyphicon-remove"></span></a></li>
 	</ul>
+
+	<h3 ng-show="groupPosted" class="success-message">Group succesfully added!</h3>
 </div>

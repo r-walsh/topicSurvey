@@ -61,23 +61,64 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 	////////POST
 
 	$scope.postNewGroup = function() {
-		adminService.postNewGroup($scope.recipientGroup);
+		adminService.postNewGroup($scope.recipientGroup)
+			.then(function(res) {
+				$scope.groupPosted = true;
+				$scope.recipientGroup = {
+					groupName: '',
+					users: []
+					}
+			})
 	}
 
 	$scope.postNewTopic = function(topicName, subjectName, date, recipientGroup) {
-		adminService.postNewTopic(topicName, subjectName, date, recipientGroup);
+		adminService.postNewTopic(topicName, subjectName, date, recipientGroup)
+			.then(function(res) {
+				$scope.topicPosted = true;
+				$scope.topicName = '';
+				$scope.subjectName = '';
+				$scope.date = '';
+				$scope.recipientGroup = '';
+			})
 	}
 
 	$scope.addToExistingTopic = function(topic, subjectName, date, recipientGroup) {
-		adminService.addToExistingTopic(topic, subjectName, date, recipientGroup);
+		adminService.addToExistingTopic(topic, subjectName, date, recipientGroup)
+			.then(function(res) {
+				$scope.topicUpdated = true;
+				$scope.topic = '';
+				$scope.subjectName = '';
+				$scope.date = '';
+				$scope.recipientGroup = '';
+			})
 	}
 
 	$scope.postSurveyTemplate = function(name, description, questions, varNames) {
-		adminService.postSurveyTemplate(name, description, questions, varNames);
+		adminService.postSurveyTemplate(name, description, questions, varNames)
+			.then(function(res) {
+				$scope.surveyTemplatePosted = true;
+				$scope.topicName = '';
+				$scope.topicDescription = '';
+				$scope.questions = [{
+					titleText: '',
+					helpText: '',
+					answers: [''],
+					questionType: ''
+				}];
+				$scope.varNameContainer = [''];
+			})
 	}
 
 	$scope.postParsedSurvey = function() {
-		adminService.postParsedSurvey($scope.confirmNewSurvey);
+		adminService.postParsedSurvey($scope.confirmNewSurvey)
+			.then(function(res) {
+				$scope.surveySent = true;
+				$scope.confirmNewSurvey = {};
+				$scope.selectedSubject = null;
+				$scope.publicName = '';
+				$scope.selectedTopic = null;
+				$scope.selectedSurvey = null;
+			})
 	}
 
 	////////GET

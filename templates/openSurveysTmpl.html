@@ -1,3 +1,5 @@
 <div class="wrapper">
 	<a class="btn btn-default" ng-click="changeSelectedSurvey(survey)" ng-href="#/open-surveys/{{ survey.subject.sessionId }}" ng-repeat="survey in openSurveys">{{ survey.publicName }}<br />{{ survey.description }}</a>
+
+	<h1 ng-show="openSurveys.length === 0">You have no available surveys at this time</h1>
 </div>

@@ -8,18 +8,13 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		var newSurvey = new surveyService.SurveyTemplate( name, description, questions, varNames );
 
-		$http.post(connectionInfo.url + '/api/surveyTemplates', newSurvey)
-			.then(function(response) {
-				console.log(response);
-			})
+		return $http.post(connectionInfo.url + '/api/surveyTemplates', newSurvey)
+
 	}
 
 	this.postParsedSurvey = function( parsedSurvey ) {
 		console.log(parsedSurvey)
-		$http.post(connectionInfo.url + '/api/parsedSurveys', parsedSurvey)
-			.then(function(response) {
-				console.log(response);
-			})
+		return $http.post(connectionInfo.url + '/api/parsedSurveys', parsedSurvey)
 	}
 
 	this.parseSurvey = function( topicId, topicName, name, description, subject, questions, parseObject ) {
@@ -85,10 +80,8 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 	this.postNewGroup = function( group ) {
 
-		$http.post(connectionInfo.url + '/api/recipientGroups', group)
-			.then(function(response) {
-				console.log(response);
-			})
+		return $http.post(connectionInfo.url + '/api/recipientGroups', group)
+
 	}
 
 	//////////TOPICS
@@ -97,22 +90,16 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 
 		var newTopic = new topicService.TopicTemplate(topicName, subjectName, date, recipientGroup);
 
-		$http.post(connectionInfo.url + '/api/topic', newTopic)
-			.then(function(response) {
-				console.log(response);
-			})
+		return $http.post(connectionInfo.url + '/api/topic', newTopic)
+
 	}
 
 	this.addToExistingTopic = function( topic, subjectName, date, recipientGroup ) {
 
 		var updatedTopic = new subjectService.SubjectTemplate(topic, subjectName, date, recipientGroup);
 
-		console.log(updatedTopic);
+		return $http.put(connectionInfo.url + '/api/topic?id=' + topic._id, updatedTopic)
 
-		$http.put(connectionInfo.url + '/api/topic?id=' + topic._id, updatedTopic)
-			.then(function(response) {
-				console.log(response);
-			})
 	}
 
 	///////GENERAL

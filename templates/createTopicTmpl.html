@@ -39,5 +39,8 @@
 		<button ng-click="addToExistingTopic(topic, subjectName, date, selectedRecipientGroup)" ng-show="!newTopic" class="btn btn-primary">Submit</button>
 		<button ng-click="postNewTopic(topicName, subjectName, date, selectedRecipientGroup)" ng-show="newTopic" class="btn btn-primary">Submit</button>
 
+		<h3 ng-show="topicPosted" class="success-message">Topic Succesfully Created</h3>
+		<h3 ng-show="topicUpdated" class="success-message">Topic Succesfully Updated</h3>
+
 	</form>
 </div>

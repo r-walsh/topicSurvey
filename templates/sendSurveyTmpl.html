@@ -30,6 +30,8 @@
 
 		<button ng-click="parseSurvey(publicName, selectedSurvey.description, selectedSubject, replacementText)" class="btn-primary btn">Submit</button>
 
+		<h3 ng-show="surveySent" class="success-message">Survey Succesfully Sent!</h3>
+		
 	</form>
 </div>
 
@@ -49,4 +51,5 @@
 	</form>
 
 	<button ng-click="postParsedSurvey()" class="btn-primary btn">Confirm</button>
+
 </div>

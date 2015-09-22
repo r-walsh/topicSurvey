@@ -44,3 +44,6 @@ html, body {
 	margin: 25px 0;
 	width: 80%;
 }
+.success-message {
+	color: red;
+}
