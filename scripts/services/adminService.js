@@ -47,6 +47,39 @@ app.service('adminService', function( $http, topicService, surveyService, subjec
 		return newParsedSurvey;
 	}
 
+	this.findQuestions = function( results, surveys ) {
+
+		var resultIds = Object.keys(results[0]);
+		
+		for (var i = 0; i < surveys.length; i++) {
+
+			if (resultIds.indexOf(surveys[i].questions[0]._id) !== -1) {
+
+				var questions = surveys[i].questions;
+
+				var resultMap = questions.reduce(function( map, question ) {
+			        if( !map[ question._id ] ) {
+			                map[ question._id ] = { question: question.titleText, answers: [] };
+			        }
+		 
+		        return map;
+				}, {});
+			 
+				results.forEach(function( result ) {
+				        for( var questionId in result ) {
+			                resultMap[ questionId ].answers.push( result[ questionId ] );
+				        }
+				});
+				 
+				var grouped = Object.keys( resultMap ).map(function( key ) {
+				        return resultMap[ key ];
+				});
+			}
+
+		}
+		return grouped;
+	}
+
 	/////////GROUPS
 
 	this.postNewGroup = function( group ) {

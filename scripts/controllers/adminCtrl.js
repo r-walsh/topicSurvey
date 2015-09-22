@@ -52,6 +52,12 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 		$scope.questions = $scope.confirmNewSurvey.questions;
 	}
 
+	$scope.findQuestions = function( results, surveys ) {
+		$scope.formattedResults = adminService.findQuestions(results, surveys);
+	}
+
+
+
 	////////POST
 
 	$scope.postNewGroup = function() {
@@ -94,6 +100,13 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 		homeService.getTopics()
 			.then(function(res) {
 				$scope.topics = res.data;
+			})
+	}()
+
+	$scope.getParsedSurveys = function() {
+		homeService.getParsedSurveys()
+			.then(function(res) {
+				$scope.parsedSurveys = res.data;
 			})
 	}()
 

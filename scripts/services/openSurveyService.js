@@ -22,6 +22,10 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 	}
 
 	this.parseToFormlyData = function( survey ) {
+		if (!survey) {
+			return false;
+		}
+		
 		var questions = survey.questions,
 			formlyArray = [];
 
@@ -50,7 +54,6 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 				}
 			}
 		}
-		console.log(JSON.stringify(formlyArray));
 		return formlyArray;
 	}
 

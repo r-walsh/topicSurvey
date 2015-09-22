@@ -8,22 +8,39 @@
 
 		<div ng-show="selectedTopic" class="form-group input-sub-container">
 			<label for="subject-selection">Session</label>
-			<select ng-model="selectedSubject" ng-options="subject as (subject.subjectName + ', ' + (subject.date | date) + ', ' + subject.recipientGroup.groupName) for subject in selectedTopic.subjects" class="form-control" name="subject-selection"></select>
+			<select ng-change="findQuestions(selectedSubject.results, parsedSurveys)" ng-model="selectedSubject" ng-options="subject as (subject.subjectName + ', ' + (subject.date | date) + ', ' + subject.recipientGroup.groupName) for subject in selectedTopic.subjects" class="form-control" name="subject-selection"></select>
 		</div>
 
 	</div>
 
 	<table ng-show="selectedSubject" class="table table-hover table-striped">
+		
 
-		<tr><th>Test</th><th>Test</th><th>Test</th><th>Test</th></tr>
-		<tr><td>Test</td><td>Test</td><td>Test</td><td>Test</td></tr>
-		<tr><td>Test</td><td>Test</td><td>Test</td><td>Test</td></tr>
+		<tr ng-repeat="result in formattedResults">
+			<th>{{ result.question }}</th>
+			<td ng-repeat="answer in result.answers track by $index">{{ answer }}</td>
+		</tr>
+
 
 	</table>
+
+<!-- 	<table>
+		<tr>
+			<th>TITLE</th>
+			<th>TITLE</th>
+			<th>TITLE</th>
+			<th>TITLE</th>
+		</tr>
+
+		<tr>
+			<td>ANSWER</td>
+			<td>ANSWER</td>
+			<td>ANSWER</td>
+			<td>ANSWER</td>
+		</tr>
+	</table> -->
 </div>
 
-<p ng-repeat="key in selectedSubject.results">
-	<p ng-repeat="prop in selectedSubject.results[key]">{{prop}}: {{selectedSubject.results[key][prop]}}</p>
-</p>
 
-<pre>{{selectedTopic | json}}</pre>
+
+<pre>{{selectedSubject | json}}</pre>
