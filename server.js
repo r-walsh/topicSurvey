@@ -52,7 +52,7 @@ app.get('/api/parsedSurveys', parsedSurveyCtrl.getSurveys);
 
 app.post('/api/parsedSurveys', parsedSurveyCtrl.addSurvey);
 
-app.put('/api/parsedSurveys', parsedSurveyCtrl.updateSurvey);
+app.put('/api/parsedSurveys/takenBy', parsedSurveyCtrl.updateSurvey);
 
 app.delete('/api/parsedSurveys', parsedSurveyCtrl.deleteSurvey);
 

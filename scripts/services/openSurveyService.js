@@ -12,7 +12,7 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 
 				for (var i = 0; i < surveyData.length; i++) {
 					for (var j = 0; j < surveyData[i].subject.recipientGroup.users.length; j++) {
-						if (surveyData[i].subject.recipientGroup.users[j].email === user) {
+						if (surveyData[i].subject.recipientGroup.users[j].email === user && surveyData[i].takenBy.indexOf(user) === -1) {
 							openSurveys.push(surveyData[i]);
 						}
 					}
@@ -23,7 +23,7 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 
 	this.parseToFormlyData = function( survey ) {
 		if (!survey) {
-			return false;
+			return;
 		}
 		
 		var questions = survey.questions,
@@ -63,8 +63,14 @@ app.service('openSurveyService', function( $http, fakeAuthService, homeService, 
 
 	this.postCompletedSurvey = function( response, selectedSurvey ) {
 		response.surveyId = selectedSurvey._id;
-		console.log(response)
+		var user = localStorage.getItem('currentUser');
+
 		$http.put(connectionInfo.url + '/api/topic/results?id=' + selectedSurvey.topicId + '&subjectId=' + selectedSurvey.subject._id, response)
+			.then(function(res) {
+				console.log(res);
+			})
+
+		$http.put(connectionInfo.url + '/api/parsedSurveys/takenBy?id=' + selectedSurvey._id, {user: user})
 			.then(function(res) {
 				console.log(res);
 			})

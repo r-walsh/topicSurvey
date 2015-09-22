@@ -7,6 +7,7 @@ var ParsedSurveySchema = new Schema({
 	topicName: String,
 	topicId: String,
 	description: String,
+	takenBy: Array,
 	subject: {
 		subjectName: String,
 		date: Date,
