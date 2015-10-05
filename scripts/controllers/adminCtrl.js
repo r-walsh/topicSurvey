@@ -153,6 +153,8 @@ app.controller('adminCtrl', function($scope, $location, adminService, homeServic
 
 	////////NG-MODEL STUFF
 
+	$scope.datePickerDefault = new Date();
+
 	$scope.questions = [{
 		titleText: '',
 		helpText: '',

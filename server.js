@@ -8,6 +8,7 @@ var express = require('express'),
 // 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(__dirname + '/'))
 mongoose.connect(mongoUri);
 mongoose.connection.once('open', function() {
 	console.log('connected to mongo at ' + mongoUri);
